@@ -4,11 +4,12 @@ import (
 	"blueprints/chapter7/meander"
 	"encoding/json"
 	"net/http"
+	"os"
 )
 
 func main() {
 	// runtime.GOMAXPROCS(runtime.NumCPU())
-	// meander.APIkey = "ToDo"
+	meander.APIKey = os.Getenv("GOOGLE_PLACES_API_KEY")
 	http.HandleFunc("/journeys", func(w http.ResponseWriter, r *http.Request) {
 		respond(w, r, meander.Journeys)
 	})
